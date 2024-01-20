@@ -4,15 +4,24 @@ export default {
   data() {
     return {
       msg: 'Mustache',
-      img: 'https://picsum.photos/600/300'
+      img: 'https://picsum.photos/600/300',
+      color: '#000000'
     }
   },
   methods: {
+    colorRandomizer(){
+
+      let n = (Math.random() * 0xfffff * 1000000).toString(16);
+  	  return '#' + n.slice(0, 6);
+
+    },
     myFunc(){
 
-      console.log('mi hai cliccato!')
+      this.color = this.colorRandomizer();
 
     }
+
+
   }
 }
 </script>
@@ -22,7 +31,7 @@ export default {
     <h1>{{ msg }}</h1>
     <img :src="img" alt="random_img">
     <br>
-    <button @click="myFunc">Change my color!</button>
+    <button @click="myFunc" :style="{background: color}">Change my color!</button>
 
   </div>
   
@@ -36,5 +45,6 @@ h1{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 
 </style>
